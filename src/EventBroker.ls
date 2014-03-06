@@ -16,7 +16,7 @@ class EventBroker extends EventEmitter
 
 			if shouldSendEvent
 				delete object._event
-				listener object
+				listener object.object
 
 	compareMessageNamespaces: (required = "", given = "") ~>
 		valid = false
