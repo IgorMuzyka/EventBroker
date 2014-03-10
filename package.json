@@ -1,6 +1,6 @@
 {
   "name": "eventbroker",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Wrapped event emitter to provide levels/namespaces of events",
   "main": "./lib/EventBroker",
   "dependencies": {
