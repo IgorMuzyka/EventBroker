@@ -6,6 +6,7 @@ EventEmitter = require "events" .EventEmitter
 class EventBroker extends EventEmitter
 	const separator = ":"
 	const acceptor = "*"
+	const space = "                                                                                                "
 
 	emit: (event, object) ~>
 		super "message", {_event: event, object: object}
@@ -15,15 +16,20 @@ class EventBroker extends EventEmitter
 			shouldSendEvent = @compareMessageNamespaces event, object._event
 
 			if shouldSendEvent
-				delete object._event
-				listener object.object
+				if event.indexOf(acceptor) != -1
+					listener object._event, object.object
+				else
+					listener object.object
+
+	any: (listener) ~>
+		@on acceptor, listener
 
 	compareMessageNamespaces: (required = "", given = "") ~>
 		valid = false
 		requiredParts = split separator, required
 		givenParts = split separator, given
 
-		if requiredParts.length <= givenParts.length
+		if requiredParts.length <= givenParts.length or --requiredParts.length == givenParts.length and required.indexOf(acceptor) != -1
 			acceptsAnySincePosition = -1
 			partsToSatisfy = requiredParts.length
 
