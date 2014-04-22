@@ -8,8 +8,8 @@ class EventBroker extends EventEmitter
 	const acceptor = "*"
 	const space = "                                                                                                "
 
-	emit: (event, object) ~>
-		super "message", {_event: event, object: object}
+	emit: (event, ...args) ~>
+		super "message", {_event: event, _objects: args}
 
 	on: (event, listener) ~>
 		super "message", (object) ~>
@@ -17,9 +17,9 @@ class EventBroker extends EventEmitter
 
 			if shouldSendEvent
 				if event.indexOf(acceptor) != -1
-					listener object._event, object.object
+					listener object._event, object._objects
 				else
-					listener object.object
+					listener object._objects
 
 	any: (listener) ~>
 		@on acceptor, listener
