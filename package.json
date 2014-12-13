@@ -4,7 +4,7 @@
   "description": "Wrapped event emitter to provide levels/namespaces of events",
   "main": "./lib/EventBroker",
   "dependencies": {
-    "prelude-ls": "~1.0.3"
+    "prelude-ls": "*"
   },
   "devDependencies": {},
   "scripts": {
