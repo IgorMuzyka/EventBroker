@@ -6,7 +6,6 @@ EventEmitter = require "events" .EventEmitter
 class EventBroker extends EventEmitter
 	const separator = ":"
 	const acceptor = "*"
-	const space = "                                                                                                "
 
 	emit: (event, ...args) ~>
 		super "message", {_event: event, _objects: args}
